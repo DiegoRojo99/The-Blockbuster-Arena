@@ -10,6 +10,7 @@ const MovieGuessingGame: React.FC = () => {
   const [cast, setCast] = useState<CastActor[]>([]);
   const [selectedMovie, setSelectedMovie] = useState('');
   const [guessResult, setGuessResult] = useState<string | null>(null);
+  const [castDisplayCount, setCastDisplayCount] = useState<number>(1);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -23,6 +24,7 @@ const MovieGuessingGame: React.FC = () => {
         setMovies(moviesResult);
         setCorrectMovie(randomMovie);
         fetchMovieCredits(randomMovie.id);
+        setGuessResult(null);
 
       } catch (error) {
         console.error("Error fetching movies:", error);
@@ -31,7 +33,7 @@ const MovieGuessingGame: React.FC = () => {
 
     fetchMovies();
   }, []);
-
+  
   const fetchMovieCredits = async (movieId: number) => {
     const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
     try {
@@ -47,16 +49,17 @@ const MovieGuessingGame: React.FC = () => {
       setGuessResult('Correct! You guessed the movie!');
     } else {
       setGuessResult('Incorrect! Try again!');
+      setCastDisplayCount((prevCount) => Math.min(prevCount + 1, cast.length));    
     }
   };
 
   return (
     <div>
       <h1>Movie Guessing Game</h1>
-      <CastDisplay cast={cast} />
+      <CastDisplay cast={cast.slice(0, castDisplayCount)} />
       <MovieGuessDropdown movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
       <button className='movie-guess-button' onClick={handleGuess} disabled={!selectedMovie}>Guess Movie</button>
-      {guessResult && <p>{guessResult}</p>}
+      {guessResult && <p style={{textAlign: 'center'}}>{guessResult}</p>}
     </div>
   );
 };

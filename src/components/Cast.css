@@ -4,13 +4,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 4px 8px;
+  margin: 0 2.5%;
+  justify-content: space-around;
 }
 
 .cast-element{
-  flex: 1;
   display: flex;
   flex-direction: column;
-  /* width: 160px; */
+  width: 240px;
   border: 1px solid lightgray;
 }
 
@@ -24,10 +25,9 @@
   text-align: center;
 }
 
-
 @media screen and (max-width: 600px){
   .cast-element{
-    flex: 1;
+    flex: 1 1 100%;
     display: flex;
     flex-direction: column;
     min-width: 96px;

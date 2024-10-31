@@ -6,7 +6,7 @@ const CastDisplay: React.FC<{ cast: any[] }> = ({ cast }) => {
     <div>
       {cast.length > 0 && (
         <div>
-          <h2>Cast Members</h2>
+          <h2 style={{marginBottom: 0}}>Cast Members</h2>
           <div className='cast-grid'>
           {cast.map((member, index) => (
             <div className='cast-element' key={member.id} style={{ margin: '10px 0' }}>

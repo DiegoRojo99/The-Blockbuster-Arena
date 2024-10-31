@@ -1,0 +1,43 @@
+
+.cast-grid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.cast-element{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* width: 160px; */
+  border: 1px solid lightgray;
+}
+
+.actor-img{
+  min-width: 160px;
+  min-height: 132px;
+}
+
+.actor-name{
+  padding: 4px;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 600px){
+  .cast-element{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 96px;
+    max-width: 160px;
+    border: 1px solid lightgray;
+  }
+  
+  .actor-img{
+    min-width: 80px;
+    max-width: 160px;
+    min-height: 132px;
+  }
+}

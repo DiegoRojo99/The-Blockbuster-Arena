@@ -12,7 +12,7 @@ const CastDisplay: React.FC<{ cast: any[] }> = ({ cast }) => {
             <div className='cast-element' key={member.id} style={{ margin: '10px 0' }}>
               <img 
                 src={`https://image.tmdb.org/t/p/w200${member.profile_path}`} 
-                // alt={member.name}
+                alt="Actor Photo"
                 className='actor-img'
               />
               <span className='actor-name'>{member.name}</span>

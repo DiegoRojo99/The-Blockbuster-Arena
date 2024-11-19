@@ -1,5 +1,5 @@
 import React from 'react';
-import './ModeSelection.css';
+import './Casted.css';
 
 interface ModeSelectionProps {
   onSelectMode: (mode: string) => void;

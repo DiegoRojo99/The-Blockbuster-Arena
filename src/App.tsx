@@ -6,7 +6,7 @@ import './App.css';
 const App: React.FC = () => {
   const [gameMode, setGameMode] = useState<string | null>(null);
 
-  const handleModeSelect = (mode: string) => {
+  const handleModeSelect = (mode: string | null) => {
     setGameMode(mode);
   };
 
@@ -16,7 +16,7 @@ const App: React.FC = () => {
       <div>
         {!gameMode ? 
           <ModeSelection onSelectMode={handleModeSelect} /> : 
-          <MovieGuessingGame gameMode={gameMode} />
+          <MovieGuessingGame gameMode={gameMode} onSelectMode={handleModeSelect}/>
         }
       </div>
     </div>

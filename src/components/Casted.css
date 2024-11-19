@@ -23,3 +23,28 @@
 .mode-button:hover {
   background-color: #8645ff;
 }
+
+.black-screen-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0, 0.8);
+  min-height: 100vh;
+  height: 100%;
+  padding: 0 0 32px;
+  width: 100vw;
+  z-index: 2;
+}
+
+.final-screen{
+  z-index: 3;
+  position: absolute;
+  top: 35vh;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+.final-screen button{
+  height: 32px;
+}

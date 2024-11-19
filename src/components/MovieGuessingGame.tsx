@@ -18,53 +18,68 @@ const MovieGuessingGame: React.FC<MovieGuessingGameProps> = ({gameMode, onSelect
   const [guessResult, setGuessResult] = useState<string[] | null>(null);
   const [castDisplayCount, setCastDisplayCount] = useState<number>(1);
   const [gameEnded, endGame] = useState<boolean>(false);
-
-  const fetchMovies = async () => {
-    const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
-    let endpoint = '';
-    
-    switch (gameMode.toLowerCase()) {
-      case 'popular':
-        endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
-        break;
-      case 'top rated':
-        endpoint = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`;
-        break;
-      case 'upcoming':
-        endpoint = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`;
-        break;
-      case 'random':
-        const randomPage = Math.floor(Math.random() * 100) + 1; // Adjust as needed
-        endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${randomPage}`;
-        break;
-      default:
-        console.error("Invalid game mode");
-        return;
-    }
-    try {
-      const response = await axios.get(endpoint);
-      let moviesResult: Movie[] = response.data.results;        
-      const randomMovie = moviesResult[Math.floor(Math.random() * moviesResult.length)];
-
-      setMovies(moviesResult);
-      setCorrectMovie(randomMovie);
-      fetchMovieCredits(randomMovie.id);
-      setGuessResult(null);
-
-    } catch (error) {
-      console.error("Error fetching movies:", error);
-    }
-  };
+  const [loading, setLoading] = useState<boolean>(true);
+  
+  const resetGame = () => {
+    endGame(false);
+    setCast([]);
+    setMovies([]);
+    setCastDisplayCount(1);
+    setSelectedMovie('');
+    setCorrectMovie(null);
+    setGuessResult(null);
+    setLoading(true);
+  }
 
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    const fetchMovies = async () => {
+      const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+      let endpoint = '';
+      switch (gameMode.toLowerCase()) {
+        case 'popular':
+          endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+          break;
+        case 'top rated':
+          endpoint = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`;
+          break;
+        case 'upcoming':
+          endpoint = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`;
+          break;
+        case 'random':
+          const randomPage = Math.floor(Math.random() * 100) + 1; // Adjust as needed
+          endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${randomPage}`;
+          break;
+        default:
+          console.error("Invalid game mode");
+          return;
+      }
+      try {
+        const response = await axios.get(endpoint);
+        let moviesResult: Movie[] = response.data.results;        
+        const randomMovie = moviesResult[Math.floor(Math.random() * moviesResult.length)];
+  
+        setMovies(moviesResult);
+        setCorrectMovie(randomMovie);
+
+        const movieCast = await fetchMovieCredits(randomMovie.id);
+        setCast(movieCast);
+  
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    };
+    
+    if(loading && !correctMovie){
+      fetchMovies();
+      setLoading(false);
+    }
+  }, [loading, gameMode, correctMovie]);
   
   const fetchMovieCredits = async (movieId: number) => {
     const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
     try {
       const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`);
-      setCast(response.data.cast);
+      return response.data.cast;
     } catch (error) {
       console.error("Error fetching movie credits:", error);
     }
@@ -120,7 +135,7 @@ const MovieGuessingGame: React.FC<MovieGuessingGameProps> = ({gameMode, onSelect
                 </React.Fragment>
               ))}
             </p>)}
-            <button className='movie-guess-button' onClick={fetchMovies}>Play Again</button>
+            <button className='movie-guess-button' onClick={resetGame}>Play Again</button>
             <button className='movie-guess-button' onClick={() => onSelectMode(null)}>Back to Menu</button>
           </div>
         </div>

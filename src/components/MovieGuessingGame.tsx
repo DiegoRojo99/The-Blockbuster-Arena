@@ -76,6 +76,11 @@ const MovieGuessingGame: React.FC<MovieGuessingGameProps> = ({gameMode}) => {
     }
   };
 
+  const emptyGuess = () => {
+    setGuessResult('');
+    setCastDisplayCount((prevCount) => Math.min(prevCount + 1, cast.length));    
+  };
+
   const giveUp = () => {
     setGuessResult(`You gave up! The correct answer was ${correctMovie?.title}`);
   };
@@ -85,6 +90,7 @@ const MovieGuessingGame: React.FC<MovieGuessingGameProps> = ({gameMode}) => {
       <CastDisplay cast={cast.slice(0, castDisplayCount)} />
       <MovieGuessDropdown movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
       <button className='movie-guess-button' onClick={handleGuess} disabled={!selectedMovie}>Guess Movie</button>
+      <button className='movie-guess-button' onClick={emptyGuess}>Another cast member</button>
       <button className='movie-guess-button' onClick={giveUp}>Give Up</button>
       {guessResult && <p style={{textAlign: 'center', padding: '0'}}>{guessResult}</p>}
       <div style={{paddingBottom: '16px'}}></div>

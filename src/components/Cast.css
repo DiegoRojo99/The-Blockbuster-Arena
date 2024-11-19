@@ -13,6 +13,8 @@
   flex-direction: column;
   width: 240px;
   border: 1px solid lightgray;
+  background-color: white;
+  color: black;
 }
 
 .actor-img{
@@ -21,7 +23,7 @@
 }
 
 .actor-name{
-  padding: 4px;
+  padding: 8px 4px;
   text-align: center;
 }
 

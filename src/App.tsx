@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ModeSelection from './components/ModeSelection';
 import MovieGuessingGame from './components/MovieGuessingGame';
+import './App.css';
 
 const App: React.FC = () => {
+  const [gameMode, setGameMode] = useState<string | null>(null);
+
+  const handleModeSelect = (mode: string) => {
+    setGameMode(mode);
+  };
+
   return (
-    <div>
-      <MovieGuessingGame />
+    <div className='app-body'>
+      <h1 style={{marginBottom: '32px'}}>Movie Guessing Game</h1>
+      <div>
+        {!gameMode ? 
+          <ModeSelection onSelectMode={handleModeSelect} /> : 
+          <MovieGuessingGame gameMode={gameMode} />
+        }
+      </div>
     </div>
   );
 };

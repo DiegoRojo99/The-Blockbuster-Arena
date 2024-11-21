@@ -12,7 +12,7 @@ const App: React.FC = () => {
 
   return (
     <div className='app-body'>
-      <h1 style={{marginBottom: '32px'}}>Movie Guessing Game</h1>
+      <h1 style={{marginBottom: '32px'}}>Casted</h1>
       <div>
         {!gameMode ? 
           <ModeSelection onSelectMode={handleModeSelect} /> : 

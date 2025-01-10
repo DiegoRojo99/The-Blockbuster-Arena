@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CastDisplay from './CastDisplay';
 import MovieGuessDropdown from './MovieGuessDropdown';
-import { CastActor, Movie } from '../Types';
+import { CastActor, Movie } from '../../Types';
 import './Casted.css';
 
 interface MovieGuessingGameProps {

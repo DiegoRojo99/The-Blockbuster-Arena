@@ -85,6 +85,11 @@ body, html, #root {
   color: #fff;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 @media (max-width: 600px) {
   .sidebar.open + .app-main {
     margin-left: 0;

@@ -1,9 +1,92 @@
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
 
-.app-body{
-  background: rgb(58,0,123);
-  background: linear-gradient(0deg, rgba(58,0,123,1) 0%, rgba(156,99,255,1) 35%, rgba(148,71,255,1) 100%);
-  padding-top: 32px;
-  min-height: 100vh;
-  height: fit-content;
-  color: white
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hamburger {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.app-title {
+  margin: 8px 16px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 56px;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #222;
+  color: #fff;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 1;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.app-nav {
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+}
+
+.nav-link {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin: 1rem 0;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.app-main {
+  flex: 1;
+  padding: 1rem;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.open + .app-main {
+  margin-left: 250px;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .sidebar.open + .app-main {
+    margin-left: 0;
+  }
 }

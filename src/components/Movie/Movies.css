@@ -1,0 +1,187 @@
+.game-container {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 48px;
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.hints {
+  margin-bottom: 20px;
+}
+
+.hints p {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+.hints p .icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.hint { 
+  display: flex;
+  margin: 8px 4px;
+}
+
+.hint-label {
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+}
+
+.hint-value {
+  flex: 2;
+  text-align: right;
+  color: #666;
+}
+.input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding-right: 30px;
+}
+
+.clear-x {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  color: #888;
+  padding: 0;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  color: #888;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 2px;
+}
+
+.btn-submit {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-giveup {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-new-game {
+  background-color: rgb(62, 128, 251);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.suggestions {
+  margin-top: 10px;
+  text-align: left;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.suggestion-item {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.guessed {
+  font-size: 1.2rem;
+  color: #28a745;
+  margin: 20px 0;
+}
+
+.endgame-text {
+  margin-top: 32px;
+}
+
+@media screen and (max-width: 420px) {
+  .button-group {
+    margin-top: 16px;
+    gap: 4px;
+  }
+
+  .button-group button {
+    font-size: 12px;
+  }
+}

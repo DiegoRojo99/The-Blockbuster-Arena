@@ -12,7 +12,7 @@ const Casted: React.FC = () => {
 
   return (
     <div className='app-body'>
-      <h1 style={{marginBottom: '32px'}}>Casted</h1>
+      <h1 style={{marginBottom: '32px', marginTop: 0}}>Casted</h1>
       <div>
         {!gameMode ? 
           <ModeSelection onSelectMode={handleModeSelect} /> : 

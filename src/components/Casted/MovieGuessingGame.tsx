@@ -46,7 +46,7 @@ const MovieGuessingGame: React.FC<MovieGuessingGameProps> = ({gameMode, onSelect
           endpoint = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`;
           break;
         case 'random':
-          const randomPage = Math.floor(Math.random() * 100) + 1; // Adjust as needed
+          const randomPage = Math.floor(Math.random() * 100) + 1;
           endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${randomPage}`;
           break;
         default:
@@ -62,9 +62,11 @@ const MovieGuessingGame: React.FC<MovieGuessingGameProps> = ({gameMode, onSelect
         setCorrectMovie(randomMovie);
 
         const movieCast = await fetchMovieCredits(randomMovie.id);
-        setCast(movieCast);
-  
-      } catch (error) {
+        let mainCast = movieCast.splice(0, 6);
+        mainCast.reverse();
+        setCast(mainCast);  
+      }
+      catch (error) {
         console.error("Error fetching movies:", error);
       }
     };
@@ -127,7 +129,7 @@ const MovieGuessingGame: React.FC<MovieGuessingGameProps> = ({gameMode, onSelect
           <div className='black-screen-bg'>
           </div>
           <div className='final-screen'>
-            {(<p style={{ textAlign: 'center' }}>
+            {(<p style={{ textAlign: 'center', color: 'white' }}>
               {guessResult.map((line, index) => (
                 <React.Fragment key={index}>
                   {line}

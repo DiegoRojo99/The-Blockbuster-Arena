@@ -18,7 +18,7 @@ const HintMovieGame: React.FC = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState<boolean>(false);
 
-  const fetchRandomMovie = async () => {
+  const fetchRandomMovie = useCallback(async () => {
     try {
       const randomPage = Math.floor(Math.random() * 500) + 1;
       const { data: topRated } = await axios.get(
@@ -53,12 +53,10 @@ const HintMovieGame: React.FC = () => {
       setGuessed(false);
       setUserInput('');
       setSuggestions([]);
-      if(error) setError(null);
-    } 
-    catch (err) {
+    } catch (err) {
       setError('Failed to fetch movie. Try again.');
     }
-  };
+  }, []); 
 
   const generateHints = (movie: MovieWithCredits): string[] => {
     const genres = movie.genres.map((g) => g.name).join(', ');
@@ -82,7 +80,7 @@ const HintMovieGame: React.FC = () => {
     ];
   };
 
-  const fetchSuggestions = async (query: string) => {
+  const fetchSuggestions = useCallback(async (query: string) => {
     if (!query) {
       setSuggestions([]);
       return;
@@ -109,7 +107,7 @@ const HintMovieGame: React.FC = () => {
     finally {
       setIsLoadingSuggestions(false);
     }
-  };
+  }, [error]);
 
   const debounce = useCallback(
     (callback: (...args: any[]) => void, delay: number) => {
@@ -128,9 +126,12 @@ const HintMovieGame: React.FC = () => {
   };
 
   const debouncedFetchSuggestions = useCallback(
-    debounce(fetchSuggestions, DEBOUNCE_DELAY),
-    []
+    (query: string) => {
+      debounce(fetchSuggestions, DEBOUNCE_DELAY)(query);
+    },
+    [fetchSuggestions, debounce]
   );
+  
 
   const handleSubmit = () => {
     if (movie && userInput.toLowerCase() === movie.title.toLowerCase()) {
@@ -149,11 +150,12 @@ const HintMovieGame: React.FC = () => {
 
   const clearInput = () => {
     setUserInput('');
+    fetchSuggestions('');
   };
 
   useEffect(() => {
     fetchRandomMovie();
-  }, []);
+  }, [fetchRandomMovie]);
 
   return (
     <div className="game-container">
@@ -180,7 +182,7 @@ const HintMovieGame: React.FC = () => {
                   value={userInput}
                   onChange={(e) => handleInputChange(e.target.value)}
                 />
-                {userInput && <button className="clear-btn" onClick={clearInput}>X</button>}
+                {userInput && <button className="clear-x" onClick={clearInput}>X</button>}
               </div>
               {isLoadingSuggestions && <p>Loading suggestions...</p>}
               <div className="suggestions">

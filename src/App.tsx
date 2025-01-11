@@ -22,7 +22,9 @@ const App: React.FC = () => {
           <button className="hamburger" onClick={toggleSidebar}>
             ☰
           </button>
-          <h2 className="app-title">The Blockbuster Arena</h2>
+          <h2 className="app-title">
+            <a href="/">The Blockbuster Arena</a>
+          </h2>
         </header>
         <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
           <nav className="app-nav">

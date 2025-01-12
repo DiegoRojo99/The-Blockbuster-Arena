@@ -1,26 +1,122 @@
 export const predefinedGames = [
   {
     rowMovies: [
-      { title: "Inception", poster: "https://image.tmdb.org/t/p/w200/8sNtGQmABJ75gr16vM3deMEUcwr.jpg" },
-      { title: "Titanic", poster: "https://image.tmdb.org/t/p/w200/kHXEpyfl6zqn8a6YuozZUujufXf.jpg" },
-      { title: "Pulp Fiction", poster: "https://image.tmdb.org/t/p/w200/dM2w364MScsjFf8pfMbaWUcWrR.jpg" },
+      { title: "Inception" },
+      { title: "Titanic" },
+      { title: "Pulp Fiction" },
     ],
     columnMovies: [
-      { title: "The Dark Knight", poster: "https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg" },
-      { title: "Shutter Island", poster: "https://image.tmdb.org/t/p/w200/52mC5D2f5Xf71IN97D63Lfp2huq.jpg" },
-      { title: "Kill Bill", poster: "https://image.tmdb.org/t/p/w200/4jVPI74b4U7UWzo4taMj3tAYFfU.jpg" },
+      { title: "The Dark Knight" },
+      { title: "Shutter Island" },
+      { title: "Kill Bill" },
     ],
   },
   {
     rowMovies: [
-      { title: "Iron Man", poster: "https://image.tmdb.org/t/p/w200/78lPtwv72eTNqFW9COBYI0dWDJa.jpg" },
-      { title: "Doctor Strange", poster: "https://image.tmdb.org/t/p/w200/uGBVj3bEbCoZbDjjl9wTxcygko1.jpg" },
-      { title: "Black Panther", poster: "https://image.tmdb.org/t/p/w200/uxzzxijgPIY7slzFvMotPv8wjKA.jpg" },
+      { title: "Iron Man" },
+      { title: "Doctor Strange" },
+      { title: "Black Panther" },
     ],
     columnMovies: [
-      { title: "Avengers: Endgame", poster: "https://image.tmdb.org/t/p/w200/or06FN3Dka5tukK1e9sl16pB3iy.jpg" },
-      { title: "Guardians of the Galaxy", poster: "https://image.tmdb.org/t/p/w200/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg" },
-      { title: "Captain Marvel", poster: "https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg" },
+      { title: "Avengers: Endgame" },
+      { title: "Guardians of the Galaxy" },
+      { title: "Captain Marvel" },
+    ],
+  },
+  {
+    rowMovies: [
+      { title: "The Matrix" },
+      { title: "The Terminator" },
+      { title: "Terminator 2: Judgment Day" },
+    ],
+    columnMovies: [
+      { title: "Predator" },
+      { title: "Total Recall" },
+      { title: "Robocop" },
+    ],
+  },
+  {
+    rowMovies: [
+      { title: "The Godfather" },
+      { title: "Scarface" },
+      { title: "Goodfellas" },
+    ],
+    columnMovies: [
+      { title: "Casino" },
+      { title: "Donnie Brasco" },
+      { title: "A Bronx Tale" },
+    ],
+  },
+  {
+    rowMovies: [
+      { title: "The Avengers" },
+      { title: "Thor" },
+      { title: "Captain America: The First Avenger" },
+    ],
+    columnMovies: [
+      { title: "Black Widow" },
+      { title: "Ant-Man" },
+      { title: "Spider-Man: Homecoming" },
+    ],
+  },
+  {
+    rowMovies: [
+      { title: "Star Wars: A New Hope" },
+      { title: "Star Wars: The Empire Strikes Back" },
+      { title: "Star Wars: Return of the Jedi" },
+    ],
+    columnMovies: [
+      { title: "Rogue One: A Star Wars Story" },
+      { title: "Solo: A Star Wars Story" },
+      { title: "The Mandalorian" },
+    ],
+  },
+  {
+    rowMovies: [
+      { title: "Back to the Future" },
+      { title: "Back to the Future Part II" },
+      { title: "Back to the Future Part III" },
+    ],
+    columnMovies: [
+      { title: "The Goonies" },
+      { title: "E.T. the Extra-Terrestrial" },
+      { title: "Indiana Jones: Raiders of the Lost Ark" },
+    ],
+  },
+  {
+    rowMovies: [
+      { title: "The Dark Knight Rises" },
+      { title: "Batman Begins" },
+      { title: "The Dark Knight" },
+    ],
+    columnMovies: [
+      { title: "Superman Returns" },
+      { title: "Man of Steel" },
+      { title: "Wonder Woman" },
+    ],
+  },
+  {
+    rowMovies: [
+      { title: "Gladiator" },
+      { title: "300" },
+      { title: "Troy" },
+    ],
+    columnMovies: [
+      { title: "Kingdom of Heaven" },
+      { title: "Alexander" },
+      { title: "Braveheart" },
+    ],
+  },
+  {
+    rowMovies: [
+      { title: "The Hunger Games" },
+      { title: "Divergent" },
+      { title: "The Maze Runner" },
+    ],
+    columnMovies: [
+      { title: "The Giver" },
+      { title: "Ender's Game" },
+      { title: "The 5th Wave" },
     ],
   },
 ];

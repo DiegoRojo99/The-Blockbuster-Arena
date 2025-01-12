@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import './Grid.css';
 import { fetchActorSuggestions } from "./tmdbAPI";
+import './Grid.css';
+
+type Movie = {
+  title: string;
+  poster: string;
+};
 
 type GridProps = {
-  grid: string[][];
+  rowMovies: Movie[];
+  columnMovies: Movie[];
   onActorSelected: (row: number, col: number, actor: string) => void;
 };
 
-export const Grid: React.FC<GridProps> = ({ grid, onActorSelected }) => {
+export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSelected }) => {
   const [selectedCell, setSelectedCell] = useState<[number, number] | null>(null);
   const [actorName, setActorName] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -35,19 +41,45 @@ export const Grid: React.FC<GridProps> = ({ grid, onActorSelected }) => {
 
   return (
     <div className="grid-container">
+      {/* Grid Structure: 4 columns (Empty, Column Movies, and the Grid of Cells) */}
       <div className="grid">
-        {grid.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              className={`grid-cell ${selectedCell?.[0] === rowIndex && selectedCell?.[1] === colIndex ? "active" : ""}`}
-              onClick={() => handleCellClick(rowIndex, colIndex)}
-            >
-              {cell}
+        {/* Empty Column */}
+        <div className="empty-column" />
+
+        {/* Column Movies */}
+        {columnMovies.map((movie, index) => (
+          <div key={index} className="movie-header">
+            {/* <img src={movie.poster} alt={movie.title} className="movie-poster" /> */}
+            <p>{movie.title}</p>
+          </div>
+        ))}
+
+        {/* Row Movies and the Grid of Cells */}
+        {rowMovies.map((movie, rowIndex) => (
+          <React.Fragment key={rowIndex}>
+            {/* Row Movie with Poster */}
+            <div className="row-movie">
+              {/* <img src={movie.poster} alt={movie.title} className="movie-poster" /> */}
+              <p>{movie.title}</p>
             </div>
-          ))
-        )}
+
+            {/* Grid of Cells */}
+            {columnMovies.map((_, colIndex) => (
+              <div
+                key={`${rowIndex}-${colIndex}`}
+                className={`grid-cell ${
+                  selectedCell?.[0] === rowIndex && selectedCell?.[1] === colIndex ? "active" : ""
+                }`}
+                onClick={() => handleCellClick(rowIndex, colIndex)}
+              >
+                {/* Placeholder for guessed actor */}
+              </div>
+            ))}
+          </React.Fragment>
+        ))}
       </div>
+
+      {/* Actor Input */}
       {selectedCell && (
         <div className="actor-input-container">
           <input

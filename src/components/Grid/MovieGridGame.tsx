@@ -26,7 +26,7 @@ export const MovieGridGame: React.FC = () => {
 
   const handleNextGame = () => {
     setGameIndex((prev) => (prev + 1) % predefinedGames.length);
-    setGridState([]);
+    setGridState([["","",""],["","",""],["","",""]]);
   };
 
   return (

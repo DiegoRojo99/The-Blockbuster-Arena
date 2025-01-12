@@ -28,7 +28,6 @@ export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSele
   const handleActorChange = async (value: string) => {
     setActorName(value);
     const suggestions = await fetchActorSuggestions(value);
-    console.log("Sugs: ", suggestions)
     setSuggestions(suggestions);
   };
 

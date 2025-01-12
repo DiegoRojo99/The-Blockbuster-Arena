@@ -7,7 +7,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr repeat(3, 1fr); /* 4 columns: 1 empty, 3 for movie posters */
+  grid-template-columns: 1fr repeat(3, 1fr);
   gap: 10px;
 }
 
@@ -43,15 +43,15 @@
   text-align: center;
 }
 
-.grid-cell.correct {
-  background-color: #4caf50;  /* Green background for correct answers */
-  color: white; /* Ensure actor name is visible */
-  border-color: #388e3c; /* Darker green for the border */
+.grid-cell.active {
+  background-color: #e0f7fa;
+  border-color: blue;
 }
 
-.grid-cell.active {
-  background-color: #e0f7fa;  /* Light blue for active selection */
-  border-color: blue;
+.grid-cell.correct, .grid-cell.correct.active {
+  background-color: #4caf50;
+  color: white;
+  border-color: #388e3c;
 }
 
 .actor-input-container {

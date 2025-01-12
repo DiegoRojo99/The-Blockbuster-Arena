@@ -11,9 +11,10 @@ type GridProps = {
   rowMovies: Movie[];
   columnMovies: Movie[];
   onActorSelected: (row: number, col: number, actor: string) => void;
+  gridState: string[][];  // Pass in the grid state to track actor guesses
 };
 
-export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSelected }) => {
+export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSelected, gridState }) => {
   const [selectedCell, setSelectedCell] = useState<[number, number] | null>(null);
   const [actorName, setActorName] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -27,6 +28,7 @@ export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSele
   const handleActorChange = async (value: string) => {
     setActorName(value);
     const suggestions = await fetchActorSuggestions(value);
+    console.log("Sugs: ", suggestions)
     setSuggestions(suggestions);
   };
 
@@ -41,12 +43,9 @@ export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSele
 
   return (
     <div className="grid-container">
-      {/* Grid Structure: 4 columns (Empty, Column Movies, and the Grid of Cells) */}
       <div className="grid">
-        {/* Empty Column */}
         <div className="empty-column" />
 
-        {/* Column Movies */}
         {columnMovies.map((movie, index) => (
           <div key={index} className="movie-header">
             {/* <img src={movie.poster} alt={movie.title} className="movie-poster" /> */}
@@ -54,32 +53,28 @@ export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSele
           </div>
         ))}
 
-        {/* Row Movies and the Grid of Cells */}
         {rowMovies.map((movie, rowIndex) => (
           <React.Fragment key={rowIndex}>
-            {/* Row Movie with Poster */}
             <div className="row-movie">
               {/* <img src={movie.poster} alt={movie.title} className="movie-poster" /> */}
               <p>{movie.title}</p>
             </div>
 
-            {/* Grid of Cells */}
             {columnMovies.map((_, colIndex) => (
               <div
                 key={`${rowIndex}-${colIndex}`}
                 className={`grid-cell ${
                   selectedCell?.[0] === rowIndex && selectedCell?.[1] === colIndex ? "active" : ""
-                }`}
+                } ${gridState[rowIndex]?.[colIndex] ? "correct" : ""}`} // Add correct class for validated guesses
                 onClick={() => handleCellClick(rowIndex, colIndex)}
               >
-                {/* Placeholder for guessed actor */}
+                {gridState[rowIndex]?.[colIndex] && <span>{gridState[rowIndex][colIndex]}</span>} {/* Show actor name if correct */}
               </div>
             ))}
           </React.Fragment>
         ))}
       </div>
 
-      {/* Actor Input */}
       {selectedCell && (
         <div className="actor-input-container">
           <input

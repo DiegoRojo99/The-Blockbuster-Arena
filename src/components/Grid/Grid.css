@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .grid {
@@ -40,10 +40,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  text-align: center;
+}
+
+.grid-cell.correct {
+  background-color: #4caf50;  /* Green background for correct answers */
+  color: white; /* Ensure actor name is visible */
+  border-color: #388e3c; /* Darker green for the border */
 }
 
 .grid-cell.active {
-  background-color: #e0f7fa;
+  background-color: #e0f7fa;  /* Light blue for active selection */
   border-color: blue;
 }
 

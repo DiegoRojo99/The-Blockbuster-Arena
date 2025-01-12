@@ -9,7 +9,7 @@ const fetchActorSuggestions = async (query: string): Promise<string[]> => {
     `${BASE_URL}/search/person?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
   );
   const data = await response.json();
-  return data.results.map((person: any) => person.name);
+  return data.results.sort((a: any, b: any) => b.popularity - a.popularity).map((person: any) => person.name);
 };
 
 const fetchActorDetails = async (rowMovie: string, colMovie: string, actorName: string) => {
@@ -76,10 +76,7 @@ const fetchActorDetails = async (rowMovie: string, colMovie: string, actorName: 
 
     // Check if the actor is in the column movie cast
     const actorInColMovie = colMovieCastResponse.data.cast.some((castMember: any) => castMember.id === actorId);
-    console.log("Column cast: ", colMovieCastResponse.data.cast)
-    console.log("Row cast: ", rowMovieCastResponse.data.cast)
-    console.log("Actor ID: ", actorId)
-
+    
     // Return true if the actor is in both movies
     return actorInRowMovie && actorInColMovie;
   } catch (error) {

@@ -1,0 +1,81 @@
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, 1fr);
+  gap: 10px;
+}
+
+.movie-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.movie-poster {
+  width: 80px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.row-movie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.grid-cell {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-align: center;
+}
+
+.grid-cell.active {
+  background-color: #e0f7fa;
+  border-color: blue;
+}
+
+.grid-cell.correct, .grid-cell.correct.active {
+  background-color: #4caf50;
+  color: white;
+  border-color: #388e3c;
+}
+
+.actor-input-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.actor-input-container input {
+  padding: 8px;
+  font-size: 14px;
+  width: 250px;
+}
+
+.suggestions {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestions li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}

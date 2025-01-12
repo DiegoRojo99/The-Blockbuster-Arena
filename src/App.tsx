@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import Casted from "./components/Casted/Casted";
 import HintMovieGame from "./components/Movie/HintMovieGame";
+import { MovieGridGame } from "./components/Grid/MovieGridGame";
 
 const App: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,12 +31,14 @@ const App: React.FC = () => {
           <nav className="app-nav">
             <Link to="/casted" className="nav-link" onClick={closeSidebar}>Casted</Link>
             <Link to="/movie" className="nav-link" onClick={closeSidebar}>Hint Movie Game</Link>
+            <Link to="/grid/movie" className="nav-link" onClick={closeSidebar}>Movie Grid</Link>
           </nav>
         </div>
         <main className="app-main">
           <Routes>
             <Route path="/movie" element={<HintMovieGame />} />
             <Route path="/casted" element={<Casted />} />
+            <Route path="/grid/movie" element={<MovieGridGame />} />
             <Route path="/" element={<div>Welcome to The Blockbuster Arena!</div>} />
           </Routes>
         </main>

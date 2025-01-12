@@ -4,14 +4,13 @@ import './Grid.css';
 
 type Movie = {
   title: string;
-  poster: string;
 };
 
 type GridProps = {
   rowMovies: Movie[];
   columnMovies: Movie[];
   onActorSelected: (row: number, col: number, actor: string) => void;
-  gridState: string[][];  // Pass in the grid state to track actor guesses
+  gridState: string[][];
 };
 
 export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSelected, gridState }) => {

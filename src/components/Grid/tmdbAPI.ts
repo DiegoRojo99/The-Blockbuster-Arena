@@ -12,7 +12,7 @@ const fetchActorSuggestions = async (query: string): Promise<string[]> => {
   return data.results.sort((a: any, b: any) => b.popularity - a.popularity).map((person: any) => person.name);
 };
 
-const fetchActorDetails = async (rowMovie: string, colMovie: string, actorName: string) => {
+const checkValidActor = async (rowMovie: string, colMovie: string, actorName: string) => {
   try {
     // Search for actor ID using the actor's name
     const actorSearchResponse = await axios.get(`${BASE_URL}/search/person`, {
@@ -85,7 +85,28 @@ const fetchActorDetails = async (rowMovie: string, colMovie: string, actorName: 
   }
 };
 
+const fetchActorDetails = async (actorName: string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/search/person`, {
+      params: {
+        api_key: API_KEY,
+        query: actorName,
+      },
+    });
+
+    if (!response.data.results.length) {
+      return null;
+    }
+
+    return response.data.results[0];
+  } catch (error) {
+    console.error("Error fetching actor details:", error);
+    return null;
+  }
+};
+
 export {
-  fetchActorDetails, 
-  fetchActorSuggestions
+  checkValidActor, 
+  fetchActorSuggestions,
+  fetchActorDetails
 }

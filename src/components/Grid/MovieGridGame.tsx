@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Grid } from "./Grid";
 import { predefinedGames } from "./predefinedGames";
-import { fetchActorDetails } from "./tmdbAPI";
+import { checkValidActor, fetchActorDetails } from "./tmdbAPI";
 
 export const MovieGridGame: React.FC = () => {
   const [gameIndex, setGameIndex] = useState(0);
-  const [gridState, setGridState] = useState<string[][]>([["","",""],["","",""],["","",""]]);
+  const [gridState, setGridState] = useState<any[][]>([[false, false, false],[false, false, false],[false, false, false]]);
 
   const { rowMovies, columnMovies } = predefinedGames[gameIndex];
 
@@ -13,11 +13,12 @@ export const MovieGridGame: React.FC = () => {
     const rowMovie = rowMovies[row];
     const colMovie = columnMovies[col];
 
-    const isActorValid = await fetchActorDetails(rowMovie.title, colMovie.title, actor);
+    const isActorValid = await checkValidActor(rowMovie.title, colMovie.title, actor);
 
     if (isActorValid) {
       const newGridState = [...gridState];
-      newGridState[row][col] = actor;
+      const actorDetails = await fetchActorDetails(actor);
+      newGridState[row][col] = actorDetails;
       setGridState(newGridState);
     } else {
       alert("Incorrect actor! Try again.");
@@ -26,7 +27,7 @@ export const MovieGridGame: React.FC = () => {
 
   const handleNextGame = () => {
     setGameIndex((prev) => (prev + 1) % predefinedGames.length);
-    setGridState([["","",""],["","",""],["","",""]]);
+    setGridState([[false, false, false],[false, false, false],[false, false, false]]);
   };
 
   return (

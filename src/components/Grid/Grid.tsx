@@ -38,6 +38,19 @@ export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSele
       setActorName("");
     }
   };
+  
+  const getActorImageUrl = (profilePath: string) => {
+    return `https://image.tmdb.org/t/p/w500${profilePath}`;
+  };
+
+  function renderActor(actor: any) {
+    return (
+      <div className="actor">
+        <img className="actor-image" src={getActorImageUrl(actor.profile_path)} alt={actor.name} />
+        <span className="actor-name">{actor.name}</span>
+      </div>
+    );
+  }
 
   return (
     <div className="grid-container">
@@ -61,12 +74,11 @@ export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSele
             {columnMovies.map((_, colIndex) => (
               <div
                 key={`${rowIndex}-${colIndex}`}
-                className={`grid-cell ${
-                  selectedCell?.[0] === rowIndex && selectedCell?.[1] === colIndex ? "active" : ""
-                } ${gridState[rowIndex]?.[colIndex] ? "correct" : ""}`} // Add correct class for validated guesses
+                 // Add active class for selected cell or correct class for validated guesses
+                className={`grid-cell ${selectedCell?.[0] === rowIndex && selectedCell?.[1] === colIndex ? "active" : ""} ${gridState[rowIndex]?.[colIndex] && "correct"}`}
                 onClick={() => handleCellClick(rowIndex, colIndex)}
               >
-                {gridState[rowIndex]?.[colIndex] && <span>{gridState[rowIndex][colIndex]}</span>} {/* Show actor name if correct */}
+                { gridState[rowIndex]?.[colIndex] && renderActor(gridState[rowIndex][colIndex]) }
               </div>
             ))}
           </React.Fragment>

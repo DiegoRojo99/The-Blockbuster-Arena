@@ -66,7 +66,7 @@ export const Grid: React.FC<GridProps> = ({ rowMovies, columnMovies, onActorSele
 
         {rowMovies.map((movie, rowIndex) => (
           <React.Fragment key={rowIndex}>
-            <div className="row-movie">
+            <div className="movie-header">
               {/* <img src={movie.poster} alt={movie.title} className="movie-poster" /> */}
               <p>{movie.title}</p>
             </div>
